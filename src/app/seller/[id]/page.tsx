@@ -40,7 +40,7 @@ export default async function SellerDetailPage({ params }: { params: { id: strin
               alt={seller.name}
               width={120}
               height={120}
-              className="rounded-full"
+              className="rounded-full transition-transform duration-500 hover:scale-110"
             />
             
             <div>

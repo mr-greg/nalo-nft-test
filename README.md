@@ -1,39 +1,7 @@
-# Nalo Take-Home Test Specification
+# Hello, voici mon test technique !
 
-Tu es un nouveau développeur dans l'équipe Nalo, et ta première tâche consiste à développer la nouvelle plateforme NFT de Nalo.
-On te laisse le goût du design.
-Nous te recommandons de consacrer entre 2 et 4 heures à cet exercice. (Fais-en plus si tu veux 😇, fais-en moins si tu penses avoir montré tout ce qu'il faut 😎).
+Le projet m'a prit environ 2h30 pour son grand ensemble, on ajoute une bonne demie-heure pour me remettre dans le bain de `Tailwind`, puis je me suis permis de prendre mon temps et me former un minimum sur les `tests` car je n'y connaissais pas grand chose !
 
-## Spécifications
+J'ai gardé le même style que la maquette, en prenant des libertés sur certains petits détails et animations, tout en gardant un style propre et moderne comme on aime.
 
-Bonjour et bienvenue dans l'équipe.
-Nous sommes dans le futur, et Nalo a étendu ses activités en ouvrant une plateforme de NFT.
-Ta tâche consiste à développer la nouvelle plateforme de Nalo en te basant sur la maquette en image `nft_plateform.webp`.
-
-Et pour ce faire :
-
-- Tu trouveras une maquette en image `nft_platform.web` qui sera la page d'entrée de l'application et que tu devras développer ;
-- Tu trouveras aussi un fichier `data.json` qui te servira de base de données des éléments affichés sur la page ;
-- Nous te laissons aussi le choix d'importer les images des NFTs et avatar des `bestSellers` ; 
-- Tu peux utiliser une librairie de composants pour la partie style si tu le souhaites.
-- Nous te recommandons fortement d'écrire des tests pour t'aider durant ce processus.
-- Et tout doit être responsive.
-
-Requis :
-
-- Dans le fichier `data.json` dans la liste `bestSellers`, tu ne peux modifier que les champs :
-  - `image` (afin de mettre les images des NFTs) 
-  - `avatar` (afin de mettre l'avatar des bestSellers)
-- On doit pouvoir cliquer sur un élément NTF ou `bestSellers` et aller sur une page de détails de l'élément ;
-  - Sur la page de détails d'un NFT, on doit voir les informations sur le NFT et aussi le profil de son `Seller` ;
-  - Sur la page de détails d'un `Seller`, on doit pouvoir voir tous les NFTs que le `Seller` est en train de vendre ;
-
-
-## Instructions
-
-- [ ] `fork` ce repository
-- [ ] Initialise le projet Nextjs ou Reactjs
-- [ ] Implémente les fonctionnalités requises
-- [ ] Teste toutes tes fonctionnalités
-- [ ] Publie-le sur GitHub en tant que `pull-request`
-- [ ] Envoie-nous le lien et dis-nous approximativement combien de temps tu as passé sur ce travail.
+Seule modification apportée qui n'était pas dans les consignes -> j'ai passé un `BestSeller` en `isVerified : true` car ils sont tous false par défaut.

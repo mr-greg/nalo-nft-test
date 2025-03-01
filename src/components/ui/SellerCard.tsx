@@ -12,7 +12,7 @@ interface SellerProps {
 
 export default function SellerCard({ id, name, avatar, isVerified, rank, eth }: SellerProps) {
   return (
-    <Link href={`/seller/${id}`} className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors">
+    <Link href={`/seller/${id}`} className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors transition-transform duration-500 hover:scale-110">
       <div className="text-gray-400 text-sm w-5">{rank}</div>
       <div className="relative">
         <Image
