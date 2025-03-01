@@ -36,7 +36,14 @@ type Props = {
 };
 
 async function getNftData(id: string): Promise<NFTData | null> {
-  const res = await fetch('http://localhost:3000/data.json', { cache: 'no-store' });
+  // construction url pour localhost et déploiement
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : process.env.NODE_ENV === 'development' 
+      ? 'http://localhost:3000' 
+      : '';
+      
+  const res = await fetch(`${baseUrl}/data.json`, { cache: 'no-store' });
   if (!res.ok) return null;
   
   const data = await res.json();
