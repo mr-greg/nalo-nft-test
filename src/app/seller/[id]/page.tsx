@@ -2,24 +2,50 @@ import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
 import NFTCard from '@/components/ui/NftCard';
 
-async function getSellerData(id: string) {
+// Définition des interfaces pour typer correctement les données
+interface Seller {
+  id: number;
+  name: string;
+  avatar: string;
+  isVerified: boolean;
+}
+
+interface NFT {
+  id: string;
+  name: string;
+  image: string;
+  totalMinted: number;
+  price: string;
+  like: number;
+  forSale: number;
+  timeLeft: string;
+  isHot: boolean;
+  sellerId: number;
+}
+
+interface SellerData {
+  seller: Seller;
+  nfts: NFT[];
+}
+
+async function getSellerData(id: string): Promise<SellerData | null> {
   //! url absolue ? à voir fetch app router
   const res = await fetch('http://localhost:3000/data.json', { cache: 'no-store' });
   if (!res.ok) return null;
   
   const data = await res.json();
   
-  const seller = data.bestSellers.find((s: any) => s.id === parseInt(id));
+  const seller = data.bestSellers.find((s: Seller) => s.id === parseInt(id));
   if (!seller) return null;
   
-  const sellerNfts = data.nfts.filter((n: any) => n.sellerId === parseInt(id));
+  const sellerNfts = data.nfts.filter((n: NFT) => n.sellerId === parseInt(id));
   return { seller, nfts: sellerNfts };
 }
 
 export default async function SellerDetailPage({ params }: { params: { id: string } }) {
   //? destructuration d'abord ?
   //? await aprams useless, mais next error sans ?
-  const { id } = await params;
+  const { id } = params;
   const data = await getSellerData(id);
   
   if (!data) {
@@ -66,7 +92,7 @@ export default async function SellerDetailPage({ params }: { params: { id: strin
         <h2 className="text-2xl font-bold mb-6">NFTs by {seller.name}</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {nfts.map((nft: any) => (
+          {nfts.map((nft: NFT) => (
             <NFTCard
               key={nft.id}
               {...nft}

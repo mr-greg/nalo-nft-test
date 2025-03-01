@@ -29,7 +29,6 @@ export default function LiveAuctions() {
   const [direction, setDirection] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const [dragging, setDragging] = useState(false);
-  const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
   
   // Référence à la div du carousel
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -106,9 +105,8 @@ export default function LiveAuctions() {
   };
   
   // Détecter le début du glissement
-  const handleDragStart = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragStart = () => {
     setDragging(true);
-    setDragStartPos({ x: info.point.x, y: info.point.y });
   };
   
   // Gestion du glissement
