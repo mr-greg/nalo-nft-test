@@ -29,6 +29,12 @@ interface NFTData {
   seller: Seller;
 }
 
+// Type accepté par Next.js selon la nouvelle documentation
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 async function getNftData(id: string): Promise<NFTData | null> {
   const res = await fetch('http://localhost:3000/data.json', { cache: 'no-store' });
   if (!res.ok) return null;
@@ -42,8 +48,11 @@ async function getNftData(id: string): Promise<NFTData | null> {
   return { nft, seller };
 }
 
-export default async function NftDetailPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function NftDetailPage({ params }: Props) {
+  // Résoudre la Promise pour obtenir l'ID
+  const resolvedParams = await params;
+  const id = resolvedParams.id;
+  
   const data = await getNftData(id);
   
   if (!data) {
