@@ -3,24 +3,47 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import LikeButton from '@/components/ui/LikeButton';
 
-async function getNftData(id: string) {
-  //! url absolue ? à voir fetch app router
+// Définition des interfaces pour typer correctement les données
+interface NFT {
+  id: string;
+  name: string;
+  image: string;
+  totalMinted: number;
+  price: string;
+  like: number;
+  forSale: number;
+  timeLeft: string;
+  isHot: boolean;
+  sellerId: number;
+}
+
+interface Seller {
+  id: number;
+  name: string;
+  avatar: string;
+  isVerified: boolean;
+}
+
+interface NFTData {
+  nft: NFT;
+  seller: Seller;
+}
+
+async function getNftData(id: string): Promise<NFTData | null> {
   const res = await fetch('http://localhost:3000/data.json', { cache: 'no-store' });
   if (!res.ok) return null;
   
   const data = await res.json();
   
-  const nft = data.nfts.find((n: any) => n.id === id);
+  const nft = data.nfts.find((n: NFT) => n.id === id);
   if (!nft) return null;
   
-  const seller = data.bestSellers.find((s: any) => s.id === nft.sellerId);
+  const seller = data.bestSellers.find((s: Seller) => s.id === nft.sellerId);
   return { nft, seller };
 }
 
 export default async function NftDetailPage({ params }: { params: { id: string } }) {
-  //? destructuration d'abord ? cf/ seller & nft details
-  //? await aprams useless, mais next error sans ?
-  const { id } = await params;
+  const { id } = params;
   const data = await getNftData(id);
   
   if (!data) {
